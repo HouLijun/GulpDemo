@@ -18,23 +18,23 @@ gulp.task('common', function() {
 	//公用样式文件
 	gulp.src(['dev/common/css/*.css']) 
 		.pipe(cleanCSS())
-		.pipe(gulp.dest('dist/page/common/css')); //公用样式输出的文件夹
+		.pipe(gulp.dest('dist/common/css')); //公用样式输出的文件夹
 		
 	//公用js文件
 	gulp.src(['dev/common/js/*.*']) 
 		.pipe(uglify())
-		.pipe(gulp.dest('dist/page/common/js')); //公用js输出的文件夹
+		.pipe(gulp.dest('dist/common/js')); //公用js输出的文件夹
 		
 	//公用img文件
 	gulp.src(['dev/common/images/*'])
 		.pipe(smushit({
 			verbose: true
 		}))
-		.pipe(gulp.dest('dist/page/common/images'));  //公用img输出的文件夹
+		.pipe(gulp.dest('dist/common/images'));  //公用img输出的文件夹
 		
 	//公用fonts输出的文件夹
 	gulp.src('dev/common/fonts/*.*') //公用fonts文件
-		.pipe(gulp.dest('dist/page/common/fonts')) 
+		.pipe(gulp.dest('dist/common/fonts')) 
 });
 
 /*使用fileinclude 实现页面 include 任务*/
@@ -44,7 +44,7 @@ gulp.task('fileinclude', function() {
 			prefix: '@@',
 			basepath: '@file'
 		}))
-		.pipe(gulp.dest('dist/page/')); //输出到dist
+		.pipe(gulp.dest('dist/')); //输出到dist
 });
 
 //压缩图片、css、js
@@ -52,19 +52,19 @@ gulp.task('compress', function() {
 	//压缩css
 	gulp.src(['dev/page/**/**/css/*.css'])
 		.pipe(cleanCSS())
-		.pipe(gulp.dest('dist/page/')); //输出到dist
+		.pipe(gulp.dest('dist/')); //输出到dist
 		
 	//压缩js
 	gulp.src(['dev/page/**/**/js/*.js'])
 		.pipe(uglify())
-		.pipe(gulp.dest('dist/page/')); //输出到dist
+		.pipe(gulp.dest('dist/')); //输出到dist
 		
 	//压缩图片
 	gulp.src(['dev/page/**/**/images/*'])
 		.pipe(smushit({
 			verbose: true
 		}))
-		.pipe(gulp.dest('dist/page/'));
+		.pipe(gulp.dest('dist/'));
 })
 
 gulp.task('default', ['clean'], function() {
